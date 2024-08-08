@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w2.org/1999/xhtml">
+<script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><html lang="en">
+    <head>
+	<meta name="generator" content="Hugo 0.128.2">
+            <meta charset="utf-8" />
+    <title>terminalcv </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My terminal cv">
+    <meta property="og:title" content="terminalcv" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://localhost:1313/" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href=""/>
+    <link rel="canonical" href="http://localhost:1313/" />    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.42.2/js/jquery.terminal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/less.min.js"></script>
+    <script src="https://unpkg.com/jquery.terminal/js/autocomplete_menu.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.42.0/css/jquery.terminal.min.css" rel="stylesheet"/>
+
+    <style>
+        body {
+            width: 100%;
+            font-size: 18px;
+        }
+    </style>
+    
+
+    </head>
+        <body>
+        
+<script> 
+jQuery(document).ready(function($) {
+    var animation = false;
+
+    var commands = {
+        help: "shows help",
+        less: "Use less as output method",
+        whois: "list basic details",
+        social: "list social networks",
+        work: "list work experience",
+        education: "list education",
+        skills: "list core skills",
+        softskills: "list soft skills",
+        languages: "list spoken languages",
+        projects: "list projects",
+         
+            certifications: "list certifications",
+        
+        
+        
+        
+        
+            version: "Current version",
+        
+        
+            exit: "exit the terminal",
+        
+        all: "Show all details",
+    };
+
+    function progressBar(number) {
+        var barLength = Math.round(number / 10);
+        var barFilled = Array(barLength + 1).join("&#9611;");
+        var barBlank= Array(11 - barLength).join("&#9617;");
+
+        return barFilled + barBlank
+    }
+
+    
+    function padKey(key, length) {
+        return key + ' '.repeat(length - key.length);
+    }
+
+    function commandsHelp() {
+        let longestKeyLength = Math.max(...Object.keys(commands).map(key => key.length));
+
+        let helpText = ""
+        for (let key in commands) {
+            if (commands.hasOwnProperty(key)) {
+                helpText += ` ${padKey(key, longestKeyLength)}\t${commands[key]}\n`
+            }
+        }
+        return helpText
+    }
+
+    var help = '\n[[b;white;]usage:]\n' +
+                '\n <command> - execute the command\n' +
+                ' less <command> - use less to display the output\n\n' +
+                '\n[[b;white;]Available commands:]\n' + 
+               commandsHelp();
+
+    var whois = [
+     
+        '[[b;grey;]Name:]\t\t\tRhemanth Jeyanezsingh R\n' + 
+        '[[b;grey;]Profession:]\t\tStudent\n' +
+        '[[b;grey;]Location:]\t\tCoimbatore, Karunya Nagar\n' +
+        
+        '[[b;grey;]Email:]\t\t\trhemisingh@gmail.com\n' +
+        
+        
+        
+        'I am currently pursuing a BTech in Computer Science and Engineering (CSE) at Karunya Institute of Technology and Sciences (KITS). My passion lies in networking and system administration, where I am constantly driven to deepen my knowledge and skills.\n' +
+        
+        '\r',
+    
+    ];
+
+    function social() { 
+        var hideName = false;
+        let sMap = { 
+             
+                
+                "Github": "https:\/\/github.com\/rhemiSINGH",
+                
+                "Linkedin": "https:\/\/www.linkedin.com\/in\/rhemi-singh",
+                
+            
+        };
+
+        
+        socialText = []
+        for (let key in sMap) {
+            if (sMap.hasOwnProperty(key)) {
+                if (hideName) {
+                    socialText.push(sMap[key]);
+                } else { 
+                    let longestKeyLength = Math.max(...Object.keys(sMap).map(key => key.length));
+                    socialText.push(`${padKey(key, longestKeyLength)}\t${sMap[key]}`)
+                };
+            }
+        }
+
+        return socialText
+    }
+
+    var certifications = [
+    
+        
+            '---\n' +
+            '[[b;grey;]CISCO Networking Essentials]\n' +
+            '\n' +
+            
+            'CISCO Networking Academy\n' +
+            
+            
+            
+            '\r',
+        
+            '---\n' +
+            '[[b;grey;]CISCO Packet Tracer]\n' +
+            '\n' +
+            
+            'CISCO Networking Academy\n' +
+            
+            
+            
+            '\r',
+        
+    
+    ];
+    
+    var work = [
+    
+        
+            '---\n' +
+            '[[b;red;]CyberSecurity Project Trainee]\n' +
+            'Karunya Hacks\n' +
+            'Coimbatore, Karunya Nagar\n' +
+            'August 2024 - Present\n' +
+            '\n' +
+            '' +
+            '\r',
+        
+            '---\n' +
+            '[[b;purple;]CISCO Networking Virtual Intern]\n' +
+            'CISCO Networking Academy\n' +
+            'online\n' +
+            'May 2024 - June 2024\n' +
+            '\n' +
+            'Some description about this purple job' +
+            '\r',
+        
+    
+    ];
+
+    var education = [
+    
+        
+            '---\n' +
+            '[[b;red;]B.Tech Computer Science and Engineering]\n' +
+            'Aug 2023 - May 2024\n' +
+            
+            "\r",
+        
+    
+    ];
+
+    var projects = [
+    
+        
+            '---\n' +
+            '[[b;red;]IOT Home Automation]\n' +
+            '\n' +
+            '\n' +
+            
+            'Implemented IFTTT to automate smart devices, enhancing home efficiency and convenience in IOT automation.\n' +
+            
+            "\r",
+      
+            '---\n' +
+            '[[b;blue;]Automatic Footstep Power Generator]\n' +
+            '\n' +
+            '\n' +
+            
+            'Implemented using piezoelectric plates and a Wheatstone bridge to convert footstep pressure into electrical energy.\n' +
+            
+            "\r",
+      
+            '---\n' +
+            '[[b;red;]Netpath Illuminator THE NETWORK ODYSSEY]\n' +
+            '\n' +
+            '\n' +
+            
+            'Implementation of simple levels of networks using CISCO Packet Tracer, Done during my internship in Networking Academy.\n' +
+            
+            "\r",
+      
+    
+    ];
+
+    var skills = [
+    
+        
+            '[[b;grey;]Python:]\n' +
+            progressBar( 80 ) +
+            '80' + '%\n' +
+            
+            'Intermediate Proficiency\n' +
+            
+            '\r',
+        
+            '[[b;grey;]Linux:]\n' +
+            progressBar( 70 ) +
+            '70' + '%\n' +
+            
+            'Intermediate Proficiency\n' +
+            
+            '\r',
+        
+            '[[b;blue;]Java:]\n' +
+            progressBar( 60 ) +
+            '60' + '%\n' +
+            
+            'Intermediate Proficiency\n' +
+            
+            '\r',
+        
+            '[[b;blue;]C:]\n' +
+            progressBar( 50 ) +
+            '50' + '%\n' +
+            
+            'Intermediate Proficiency\n' +
+            
+            '\r',
+        
+            '[[b;blue;]Networking:]\n' +
+            progressBar( 50 ) +
+            '50' + '%\n' +
+            
+            'Intermediate Proficiency\n' +
+            
+            '\r',
+        
+    
+    ];
+
+    var softSkills = [
+    
+        
+            '[[b;red;]Team Player:]\n' +
+            progressBar( null ) +
+            '' + '%\n' + 
+            
+            '\r',
+        
+            '[[b;red;]Problem Solving:]\n' +
+            progressBar( null ) +
+            '' + '%\n' + 
+            
+            '\r',
+        
+            '[[b;red;]Critical Thinking:]\n' +
+            progressBar( null ) +
+            '' + '%\n' + 
+            
+            '\r',
+        
+    
+    ];
+  
+    var languages = [
+    
+        
+            '[[b;Blue;]English:]\n' +
+            progressBar( null )+ 
+            '' + '%\n' +
+            
+            '\r',
+        
+            '[[b;Blue;]Tamil:]\n' +
+            progressBar( null )+ 
+            '' + '%\n' +
+            
+            '\r',
+        
+    
+    ];
+
+    var misc = [
+         
+    ];
+
+    var source =  '        _______            \n' +
+                  '       |       |           \n' +
+                  '       |       |           \n' +
+                  '       |_______|_______    \n' +
+                  '               |       |   \n' +
+                  '               |       |   \n' +
+                  ' ______________|_______|   \n' +
+                  '|      |       |       |   \n' +
+                  '|      |       |       |   \n' +
+                  '|______|_______|_______|   \n' +
+                  '[[;red;]Thank you for Visiting!!\n' +
+                  '[[;grey;]https://Have a great day!!\n';
+
+    var all = [ 
+        whois,
+        social(),
+        work,
+        education,
+        skills,
+        softSkills,
+        languages,
+        projects,
+        certifications,
+        misc,
+        
+        
+        source,
+        
+    ]
+
+    $('body').terminal(function(command, term) {
+
+        var useLess = false;
+        
+
+        function echoArray(array) {
+            if (useLess) {
+                term.less(array);
+            } else {
+                for (i = 0; i < array.length; i += 1) {
+                    term.echo(array[i]);
+                }
+            }
+        }
+        
+        function progress(percent, width) {
+            var size = Math.round(width*percent/100);
+            var left = '', taken = '', i;
+            for (i=size; i--;) {
+                taken += '=';
+            }
+            if (taken.length > 0) {
+                taken = taken.replace(/=$/, '>');
+            }
+            for (i=width-size; i--;) {
+                left += ' ';
+            }
+            return '[' + taken + left + '] ' + percent + '%';
+        }
+
+        function loading () {
+            var i = 0, size = 30;
+            prompt = term.get_prompt();
+            string = progress(0, size);
+            term.set_prompt(progress);
+            animation = true;
+            (function loop() {
+                string = progress(i++, size);
+                term.set_prompt(string);
+                if (i < 100) {
+                    timer = setTimeout(loop, 10);
+                } else {
+                    term.echo(progress(i, size) + ' [[b;green;]OK]').set_prompt(prompt);
+                    animation = false
+                }
+            })();
+        }
+
+        commands = command.split(/[ ]+/);
+        if (commands[0] == 'less') {
+            useLess = true;
+            commands.shift();
+        } 
+                    
+        switch(commands[0]) {
+            case 'whois':
+                
+                echoArray(whois);
+                break;
+            case 'social':
+                
+                echoArray(social());
+                break;
+            case 'work':
+                
+                echoArray(work);
+                break;
+            case 'education':
+                
+                echoArray(education);
+                break;
+            case 'skills':
+                
+                echoArray(skills);
+                break;
+            case 'softskills':
+                
+                echoArray(softSkills);
+                break;
+            case 'languages':
+                
+                echoArray(languages);
+                break;
+            case 'projects':
+                
+                echoArray(projects);
+                break;
+            case 'certifications':
+                
+                term.echo(certifications);
+                break;
+            case 'misc':
+                
+                echoArray(misc);
+                break;
+            case 'help':
+            case '?':
+                term.echo(help);
+                break;
+            case 'all':
+                
+                echoArray(all.flat(1));
+                break;
+            
+            case ':(){:|:&};:':
+                term.echo("nice try");
+                break;
+            case 'source':
+                
+                term.echo(source);
+                break;
+            
+            case 'exit':
+                term.echo("terminating ... ")
+                loading();
+                setTimeout(function(){window.location = 'about:blank'}, 2000);
+                break;
+            
+            
+            case 'version':
+                term.echo("2.0.0");
+                break;
+            
+            case '':
+                break;
+            default:
+                term.echo("\nunknown command: " + command + "\n" +
+                          "please type 'help' or '?' for a list of available commands\n");
+        }
+    }, {
+        prompt: '[[;red;][][[;pink;]user@terminalCV][[;red;]]]',
+        greetings: "[[b;white;]                                             \n\n Explore my professional journey! \n\n Type \u0027help\u0027 for a list of available commands]",
+
+        keydown: function(e, term) {
+            if (animation) {
+                if (e.which == 68 && e.ctrlKey) { 
+                    clearTimeout(timer);
+                    animation = false;
+                    term.echo(string + ' [[b;red;]FAIL]')
+                    .set_prompt(prompt);
+                }
+                return false;
+            }
+        },
+        autocompleteMenu: true,
+        completion: Object.keys(commands)
+        
+    });
+});
+</script>
+
+        </body>
+</html>
