@@ -1,0 +1,10 @@
+{
+  "name": "mysite",
+  "version": "1.0.0",
+  "description": "A Dockerized HTML portfolio site",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "author": "Your Name",
+  "license": "ISC"
+}
